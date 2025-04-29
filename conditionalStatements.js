@@ -179,3 +179,19 @@ switch (grade) {
 }
 
 
+//Break Statement Vs. Continue Statement
+// 1. Break statement: Used to exit a loop or switch statement prematurely.
+for (let i = 0; i < 5; i++) {
+    if (i === 3) {
+        break; // Exit the loop when i is 3
+    }
+    console.log("Break statement iteration:", i);
+}
+
+// 2. Continue statement: Used to skip the current iteration of a loop and continue with the next iteration.
+for (let i = 0; i < 5; i++) {
+    if (i === 3) {
+        continue; // Skip the iteration when i is 3
+    }
+    console.log("Continue statement iteration:", i);
+}

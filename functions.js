@@ -129,3 +129,114 @@ function myFunction() {
 }
 myFunction.customMethod(); // Output: This is a custom method on the Function prototype!
 
+
+//Higher Order Functions
+//Higher-order functions are functions that can take other functions as arguments or return functions as their result.
+// They allow for more abstract and flexible programming patterns.
+//1. ForEach
+const num = [1, 2, 3, 4, 5];
+num.forEach((number) => {
+    console.log(number); // Output: 1 2 3 4 5
+});
+
+//2. Map
+const numbers2 = [1, 2, 3, 4, 5];
+const squares = numbers2.map((number) => {
+    return number * number;
+});
+console.log(squares); // Output: [1, 4, 9, 16, 25]
+
+//3. Filter
+const numbers3 = [1, 2, 3, 4, 5];
+const evenNumbers = numbers3.filter((number) => {
+    return number % 2 === 0;
+});
+console.log(evenNumbers); // Output: [2, 4]
+
+const add = (callback, a, b) => {
+    return callback(a, b);
+}
+  add((result) => {
+    console.log(result); // Output: 5
+  }, 2, 3);
+
+
+
+  //Differences between Callback, Arrow, Anonymous, and Higher Order Functions
+
+// 1. Callback Function
+// A callback function is a function that is passed as an argument to another function and is executed after the completion of that function.
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = "Fetched data!";
+        callback(data);
+    }, 1000);
+}
+fetchData((data) => {
+    console.log(data); // Output: Fetched data! (after 1 second)
+});
+
+// 2. Arrow Function
+// An arrow function is a shorter syntax for writing function expressions. It does not have its own 'this' context.
+const add = (a, b) => {
+    return a + b;
+};
+console.log(add(2, 3)); // Output: 5
+// Arrow functions are often used as callback functions.
+
+// 3. Anonymous Function
+// An anonymous function is a function without a name. It can be used as a callback or passed as an argument.
+setTimeout(function() {
+    console.log("This is an anonymous function!");
+}, 1000); // Output: This is an anonymous function! (after 1 second)
+// Anonymous functions can also be used as IIFE (Immediately Invoked Function Expressions).
+
+// 4. Higher Order Function
+// A higher-order function is a function that takes other functions as arguments or returns a function as its result.
+function higherOrderFunction(callback) {
+    return function() {
+        console.log("This is a higher-order function!");
+        callback();
+    };
+}
+const innerFunction = higherOrderFunction(() => {
+    console.log("This is the callback function!");
+});
+innerFunction(); // Output: This is a higher-order function! This is the callback function!
+// Higher-order functions are often used in functional programming and can be used to create more abstract and reusable code.
+
+// 5. Differences
+// - Callback functions are used to handle asynchronous operations and can be either named or anonymous.
+// - Arrow functions provide a shorter syntax for writing function expressions and do not have their own 'this' context.
+// - Anonymous functions are functions without names and can be used as callbacks or IIFE.
+// - Higher-order functions are functions that take other functions as arguments or return functions as their result, allowing for more abstract and flexible programming patterns.
+//
+
+// 6. Example of using all together
+const numbers4 = [1, 2, 3, 4, 5];
+const doubleNumbers = numbers4.map((number) => {
+    return number * 2;
+});
+
+const sum = (a, b) => {
+    return a + b;
+};
+const total = doubleNumbers.reduce((acc, number) => {
+    return sum(acc, number);
+}, 0);
+
+console.log(total); // Output: 30
+// This example uses a higher-order function (map) to double the numbers in the array,
+// an arrow function (sum) to calculate the sum, and a callback function (reduce) to accumulate the total.
+
+// 7. Example of using all together with IIFE
+const numbers5 = [1, 2, 3, 4, 5];
+const total2 = (function(arr) {
+    return arr.reduce((acc, number) => {
+        return acc + number;
+    }, 0);
+})(numbers5);
+console.log(total2); // Output: 15
+// This example uses an IIFE to calculate the total of the numbers in the array.
+// It demonstrates how to combine different types of functions in JavaScript to achieve a specific task.
+
